@@ -1,6 +1,6 @@
 # DDoS-Attk-Detection-System-using-ML
 
-The project is focused on implementing a machine learning model for predictive analytics. The project has 8 features that include data acquisition, data preprocessing, feature engineering, ML model building, training, testing, alert generation, and visualization.
+The project is a desktop based application focused on implementing a machine learning model for predictive analytics. The project has 8 features that include data acquisition, data preprocessing, feature engineering, ML model building, training, testing, alert generation, and visualization.
 
 ## Features
 
@@ -51,4 +51,9 @@ To use this project, follow the steps given below:
 
 ## Credits
 
-This project was created by [Your Name]. If you have any questions or suggestions, please feel free to contact me.
+This project was created by Furqan Fiaz. If you have any questions or suggestions, please feel free to contact me.![Screenshot (110)](https://github.com/Furqaann/DDoS-Attk-Detection-System-using-ML/assets/94382218/9897a2d7-29ca-476f-b00f-aff5df1c4b5f)
+![Screenshot (111)](https://github.com/Furqaann/DDoS-Attk-Detection-System-using-ML/assets/94382218/90b1e7d1-a6e4-4be7-bb5c-29de9e11dec6)
+![Screenshot (112)](https://github.com/Furqaann/DDoS-Attk-Detection-System-using-ML/assets/94382218/cf29660a-261a-46ee-bc23-b0078bc75c27)
+![Screenshot (113)](https://github.com/Furqaann/DDoS-Attk-Detection-System-using-ML/assets/94382218/dcbc794e-ed73-4f9f-b0c1-cf462d8336cd)
+![Screenshot (114)](https://github.com/Furqaann/DDoS-Attk-Detection-System-using-ML/assets/94382218/9c5a35b7-5a69-469a-b4f1-266f1f78435b)
+
