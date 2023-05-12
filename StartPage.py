@@ -1,17 +1,26 @@
 import kivy
 from kivy.app import App
+from kivymd.app import MDApp
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.image import Image
 from kivy.uix.screenmanager import ScreenManager, Screen
+# from ModelBuild import *
+
 
 
 # Designate Our .kv design file 
 Builder.load_string("""
 <SystemLayout>:
     name:"start"
+    canvas.before:
+        Color:
+            rgba: (0,0,0,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
     
 	BoxLayout:
 		orientation: "vertical"
@@ -72,21 +81,27 @@ Builder.load_string("""
             on_release:
                 root.manager.transition.direction = 'left'
                 app.root.current = "home"
-
 		 """)
 
 class SystemLayout(Screen):
 	pass
 
-class DDoSApp(App):
+class DDoSApp(MDApp):
 	def build(self):
             from MainMenu import Home_PageWindow
+            from Featureselection import featurewindow
             from Acquisition import screenwid
+            # from ModelBuild import MyLayout
+            # from cards import HeroCard
+	    
             screenm= ScreenManager()
             screenm.add_widget(SystemLayout())
             screenm.add_widget(Home_PageWindow())
             screenm.add_widget(screenwid())
+            screenm.add_widget(featurewindow())
+            # screenm.add_widget(MyLayout())
             return screenm
 
 if __name__ == '__main__':
-	DDoSApp().run()
+	DDoSApp().run() 
+	# ModelBuildApp().run()

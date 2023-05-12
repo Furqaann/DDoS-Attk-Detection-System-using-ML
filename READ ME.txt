@@ -1,0 +1,2 @@
+1- IF it throws error in Acquisition when we get table(MDApp widget must be inherited from kivymd), Simply import the kivymd MDApp again.
+from kivymd.app import MDApp

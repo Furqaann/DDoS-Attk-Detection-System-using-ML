@@ -20,7 +20,7 @@ Builder.load_string("""
     orientation: 'vertical'
     canvas.before:
         Color:
-            rgba: (70/255,81/255,83/255,1)
+            rgba: (30/255,35/255,36/255,1)
         Rectangle:
             size: self.size
             pos: self.pos
@@ -49,7 +49,7 @@ Builder.load_string("""
             Button:
                 id:btn_home
                 size_hint_x:0.99
-                background_color:(70/255,81/255,83/255,1)
+                background_color:(30/255,35/255,36/255,1)
                 background_normal:''
                 on_press:
                     root.manager.transition.direction = 'right'
@@ -58,14 +58,15 @@ Builder.load_string("""
                     source:"images/home.png"
                     center_x: self.parent.center_x
                     center_y: self.parent.center_y
-
-                
             
             Button:
                 id:btn_acquisition
                 size_hint_x:0.99
-                background_color:(70/255,81/255,83/255,1)
+                background_color:(55/255,61/255,62/255,1)
                 background_normal:''
+                on_release:
+                    app.root.current = "z"
+                    root.manager.transition.direction = 'left'
                 Image:
                     source:"images/acquisition.png"
                     center_x: self.parent.center_x
@@ -76,8 +77,11 @@ Builder.load_string("""
             Button:
                 id:btn_feature
                 size_hint_x:0.99
-                background_color:(70/255,81/255,83/255,1)
+                background_color:(30/255,35/255,36/255,1)
                 background_normal:''
+                on_release:
+                    app.root.current = "featureselection"
+                    root.manager.transition.direction = 'left'
                 Image:
                     source:"images/feature.png"
                     center_x: self.parent.center_x
@@ -88,8 +92,11 @@ Builder.load_string("""
             Button:
                 id:btn_machinelearning
                 size_hint_x:0.99
-                background_color:(70/255,81/255,83/255,1)
+                background_color:(30/255,35/255,36/255,1)
                 background_normal:''
+                on_release:
+                    app.root.current = "mainwin"
+                    root.manager.transition.direction = 'left'
                 Image:
                     source:"images/machine_learning.png"
                     center_x: self.parent.center_x
@@ -99,7 +106,7 @@ Builder.load_string("""
             Button:
                 id:btn_model
                 size_hint_x:0.99
-                background_color:(70/255,81/255,83/255,1)
+                background_color:(30/255,35/255,36/255,1)
                 background_normal:''
                 Image:
                     source:"images/testmodel.png"
@@ -111,7 +118,7 @@ Builder.load_string("""
             Button:
                 id:btn_visualize
                 size_hint_x:0.99
-                background_color:(70/255,81/255,83/255,1)
+                background_color:(30/255,35/255,36/255,1)
                 background_normal:''
                 Image:
                     source:"images/visualize.png"
@@ -146,14 +153,9 @@ Builder.load_string("""
                     canvas.before:
                         Color:
                             rgba:(1,1,1,1)
-                    #     RoundedRectangle:
-                    #         size:   self.size
-                    #         pos:    self.pos
-                    #         radius: [20]
                         Line:
                             width: 2
                             rectangle: self.x, self.y, self.width, self.height
-
                     on_text: root.spinner_clicked(spinner_acquisition.text)
 
                 FileChooserIconView:
@@ -166,13 +168,13 @@ Builder.load_string("""
                         Rectangle:
                             pos: self.pos
                             size: self.size
-                    on_selection: main_win.selected(filechooser.selection)
+                    on_selection: root.selected(filechooser.selection)
                 
                 Button:
                     text:"Get Table"
                     size_hint:(0.4,0.1)
                     pos_hint: {"x":0.15,"top":0.68}
-                    background_color:(134/255, 93/255, 201/255,1)
+                    background_color:(0/255, 148/255, 255/255,1)
                     background_normal:''
                     canvas.before:
                         Color:
@@ -182,6 +184,8 @@ Builder.load_string("""
                             rectangle: self.x, self.y , self.width, self.height
                     on_press:
                         main_win.tablecheck()
+                        app.root.current = "tablewid"
+                        root.manager.transition.direction = 'left'
 
                 Label:
                     text:"Data Preprocessing"
@@ -309,8 +313,132 @@ Builder.load_string("""
                             size:   self.size
                             pos:    self.pos
                             radius: [15]
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = "featureselection"
+
+<Table_wid>:
+    name:"tablewid"
+    id: table_win
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: (30/255,35/255,36/255,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        id: content_nav
+        
+        BoxLayout:
+            id: nav_tabs
+            size_hint_x:0.1
+            pos_hint:{"x":0.1}
+            orientation: 'vertical'
+            spacing: 1
+            
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: self.width-1, self.height
+                    pos: self.x, self.y
+
+            Button:
+                id:btn_home
+                size_hint_x:0.99
+                background_color:(30/255,35/255,36/255,1)
+                background_normal:''
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    app.root.current = "home"
+                Image:
+                    source:"images/home.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            
+            Button:
+                id:btn_acquisition
+                size_hint_x:0.99
+                background_color:(55/255,61/255,62/255,1)
+                background_normal:''
+                on_release:
+                    app.root.current = "z"
+                    root.manager.transition.direction = 'left'
+                Image:
+                    source:"images/acquisition.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    width:50
+                    height:50
+                
+            Button:
+                id:btn_feature
+                size_hint_x:0.99
+                background_color:(30/255,35/255,36/255,1)
+                background_normal:''
+                on_release:
+                    app.root.current = "featureselection"
+                    root.manager.transition.direction = 'left'
+                Image:
+                    source:"images/feature.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    width:50
+                    height:50
+            
+            Button:
+                id:btn_machinelearning
+                size_hint_x:0.99
+                background_color:(30/255,35/255,36/255,1)
+                background_normal:''
+                on_release:
+                    app.root.current = "mainwin"
+                    root.manager.transition.direction = 'left'
+                Image:
+                    source:"images/machine_learning.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    width:50
+                    height:50
+
+            Button:
+                id:btn_model
+                size_hint_x:0.99
+                background_color:(30/255,35/255,36/255,1)
+                background_normal:''
+                Image:
+                    source:"images/testmodel.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    width:50
+                    height:50
+            
+            Button:
+                id:btn_visualize
+                size_hint_x:0.99
+                background_color:(30/255,35/255,36/255,1)
+                background_normal:''
+                Image:
+                    source:"images/visualize.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    width:50
+                    height:50
+       
+        BoxLayout:
+            id: content
+            size_hint_x: 0.8                        
+
 
 """)
+class Table_wid(Screen):
+    pass
 
 class screenwid(Screen):
     def __init__(self, **kwargs):
@@ -360,7 +488,7 @@ class screenwid(Screen):
         # self.theme_cls.theme_style= 'Dark'
         # self.theme_cls.primary_palette= 'BlueGray'
 
-        sc.get_screen("z").ids.content.add_widget(table)
+        ScreenManager.get_screen("tablewid").ids.content.add_widget(table)
 
     def checked(self,instance_table,current_row):
         print(instance_table,current_row)
@@ -381,6 +509,7 @@ class screenwid(Screen):
             use_pagination=True,
             rows_num=20,
             check = True,
+            background_color_header="#03cffc",
             column_data =[(col, dp(30))
                 for col in cols
             ] ,
@@ -393,12 +522,16 @@ class screenwid(Screen):
         # self.theme_cls.theme_style= 'Dark'
         # self.theme_cls.primary_palette= 'BlueGray'
 
-        sc.get_screen("z").ids.content.add_widget(table)
+        ScreenManager.get_screen("tablewid").ids.content.add_widget(table)
 
     def checked(self,instance_table,current_row):
         print(instance_table,current_row)
     def row_checked(self,instance_table,instance_row):
         print(instance_table,instance_row)
+
+
+# *********************************************************** DATA PREPROCESSING************************************************
+
 
     def Conversion(self):
         if(file_extension==".Xlsx"):
@@ -448,7 +581,6 @@ class screenwid(Screen):
     
     def normalize(self):
         
-
         # Load the CSV file
         df = pd.read_csv(file_name[0])
 
@@ -456,9 +588,11 @@ class screenwid(Screen):
         scaler = preprocessing.MinMaxScaler()
 
         # Fit the scaler to the data
+        # Mean and Standard deviation is calculated
         scaler.fit(df)
 
         # Transform the data
+        # Values are transformed into 0 to 1
         df_scaled = scaler.transform(df)
 
         # Convert the data back to a DataFrame
@@ -500,11 +634,12 @@ class screenwid(Screen):
 
 
     def Split_Dataset(self):
-
-        # Open the input CSV file
+        # Open the input CSV file and create a CSV reader object
         with open(file_name[0], 'r') as input_file:
-            # Create a CSV reader object
-            reader = csv.reader(input_file)
+            reader = csv.DictReader(input_file)
+            
+            # Extract the column names from the input file and store them in a list
+            column_names = reader.fieldnames
 
             # Initialize lists to store the training and testing data
             training_data = []
@@ -521,38 +656,35 @@ class screenwid(Screen):
                 else:
                     testing_data.append(row)
 
-        # reader.to_csv(os.path.join(str('training_data') + str('.csv')), index=None, header=True)
-        # reader.to_csv(os.path.join(str('testing_data') + str('.csv')), index=None, header = True)
-        # Open the training data CSV file
+        # Open the training data CSV file and create a CSV writer object with column names
         with open('training_data.csv', 'w', newline='') as training_file:
-            # Create a CSV writer object
-            writer = csv.writer(training_file)
+            writer = csv.DictWriter(training_file, fieldnames=column_names)
+            # Write the column names to the CSV file
+            writer.writeheader()
             # Write the training data to the CSV file
             writer.writerows(training_data)
 
-        # Open the testing data CSV file
+        # Open the testing data CSV file and create a CSV writer object with column names
         with open('testing_data.csv', 'w', newline='') as testing_file:
-            # Create a CSV writer object
-            writer = csv.writer(testing_file)
+            writer = csv.DictWriter(testing_file, fieldnames=column_names)
+            # Write the column names to the CSV file
+            writer.writeheader()
             # Write the testing data to the CSV file
             writer.writerows(testing_data)
-        
-        print("Successfully Dataset splitted into testing and training")
 
+        print("Successfully Dataset splitted into testing and training")
 
     def close_window(self,obj):
         App.get_running_app().stop()
         Window.close()
 
-class Acquisition(MDApp):
+class AcquisitionApp(MDApp):
     def build(self):
-        global sc
-        sc= ScreenManager()
-        sc.add_widget(screenwid())
-        return sc
-    
-    
-    
+        global ScreenManager
+        ScreenManager= ScreenManager()
+        ScreenManager.add_widget(screenwid())
+        ScreenManager.add_widget(Table_wid())
+        return ScreenManager
 
 if __name__=='__main__':
-    Acquisition().run()
+    AcquisitionApp().run()
